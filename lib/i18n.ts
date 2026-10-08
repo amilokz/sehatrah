@@ -226,6 +226,153 @@ export const STRINGS: Dict = {
     ur: 'Yeh browser mein stored tamam demo changes clear kar dega (bookings, signups, approvals). Continue?',
   },
 
+  // ---------- Landing page ----------
+  'nav.features': { en: 'Features', ur: 'Features' },
+  'nav.how': { en: 'How it works', ur: 'Kaam kaise karta hai' },
+  'nav.findDoctors': { en: 'Find Doctors', ur: 'Doctors dhoondein' },
+  'nav.faq': { en: 'FAQ', ur: 'FAQ' },
+  'nav.tryDemo': { en: 'Try live demo', ur: 'Live demo try karein' },
+
+  'landing.eyebrow': { en: 'Verified Doctors + AI Triage', ur: 'Verified Doctors + AI Triage' },
+  'landing.h1a': { en: 'Find the right doctor,', ur: 'Sahi doctor dhoondein,' },
+  'landing.h1b': { en: 'with confidence.', ur: 'poore aitmaad ke saath.' },
+  'landing.sub': {
+    en: "People don't know which specialist to see, and can't tell if a doctor is genuine — SehatRah guides you and shows only verified profiles.",
+    ur: 'Logon ko nahi pata ke kis specialist ko dikhayein, aur yeh bhi nahi ke doctor asli hai ya nahi — SehatRah aap ki rehnumai karta hai aur sirf verified profiles dikhata hai.',
+  },
+  'landing.ctaAsk': { en: 'Ask SehatRah', ur: 'SehatRah se poochein' },
+  'landing.ctaBrowse': { en: 'Browse doctors', ur: 'Doctors dekhein' },
+  'landing.statsDoctors': { en: 'verified doctors', ur: 'verified doctors' },
+  'landing.statsClinics': { en: 'clinics', ur: 'clinics' },
+
+  'landing.mockSearch': { en: 'Find a doctor', ur: 'Doctor dhoondein' },
+  'landing.mockCity': { en: 'Lahore', ur: 'Lahore' },
+  'landing.mockSpec': { en: 'Dermatology', ur: 'Dermatology' },
+  'landing.mockSearchBtn': { en: 'Search', ur: 'Search' },
+  'landing.mockSample': { en: 'sample', ur: 'sample' },
+  'landing.mockName': { en: 'Dr. Ayesha Khan', ur: 'Dr. Ayesha Khan' },
+  'landing.mockVisits': { en: 'verified visits', ur: 'verified visits' },
+  'landing.mockBook': { en: 'Book appointment', ur: 'Appointment book karein' },
+  'landing.mockBadge1': { en: 'Verified ✓ — PMDC-style reg. (sample)', ur: 'Verified ✓ — PMDC-style reg. (sample)' },
+  'landing.mockBadge2': { en: 'AI triage → Dermatologist', ur: 'AI triage → Dermatologist' },
+
+  'landing.trust1': { en: 'Verified badges', ur: 'Verified badges' },
+  'landing.trust2': { en: 'Sample data', ur: 'Sample data' },
+  'landing.trust3': { en: 'Works in browser', ur: 'Browser mein chalta hai' },
+
+  'landing.featuresTitle': { en: 'Everything you need before the visit', ur: 'Visit se pehle sab kuch' },
+  'landing.featuresSub': {
+    en: 'Guidance, verification and booking — in one calm place.',
+    ur: 'Rehnumai, verification aur booking — sab ek pur-sukoon jagah par.',
+  },
+  'landing.f1t': { en: 'AI symptom triage', ur: 'AI symptom triage' },
+  'landing.f1d': {
+    en: 'Describe what you feel in Urdu or English — the demo assistant points you to the right specialist type.',
+    ur: 'Apni alamat Urdu ya English mein batayein — demo assistant aap ko sahi specialist type tak pohanchayega.',
+  },
+  'landing.f2t': { en: 'Verified doctor directory', ur: 'Verified doctors directory' },
+  'landing.f2d': {
+    en: 'Degrees and registration documents are checked before a doctor earns the Verified badge.',
+    ur: 'Verified badge se pehle doctor ki degree aur registration documents check kiye jate hain.',
+  },
+  'landing.f3t': { en: 'Emergency guidance', ur: 'Emergency guidance' },
+  'landing.f3d': {
+    en: 'If symptoms look urgent, a red card tells you to go to the nearest hospital or call 1122 right away.',
+    ur: 'Agar alamat urgent lagein to red card foran qareebi hospital jane ya 1122 call karne ka kehta hai.',
+  },
+  'landing.f4t': { en: 'Clinic profiles', ur: 'Clinic profiles' },
+  'landing.f4d': {
+    en: 'Hygiene ratings, average wait times and fee tables for every listed clinic.',
+    ur: 'Har listed clinic ki hygiene rating, ausat wait time aur fee table.',
+  },
+  'landing.f5t': { en: 'Medicine checker', ur: 'Dawai checker' },
+  'landing.f5d': {
+    en: 'Check a medicine name and batch number against the demo registry before you buy.',
+    ur: 'Khareedne se pehle dawai ka naam aur batch number demo registry mein check karein.',
+  },
+  'landing.f6t': { en: 'Doctor signup + verification', ur: 'Doctor signup + verification' },
+  'landing.f6d': {
+    en: 'Doctors apply online and an admin verifies their documents before they go live.',
+    ur: 'Doctors online apply karte hain aur admin documents verify karne ke baad unhein live karta hai.',
+  },
+
+  'landing.howTitle': { en: 'Three steps to the right doctor', ur: 'Sahi doctor tak teen steps' },
+  'landing.step1t': { en: 'Describe symptoms or search', ur: 'Alamat batayein ya search karein' },
+  'landing.step1d': {
+    en: 'Tell the assistant what you feel, or filter doctors by city and specialty.',
+    ur: 'Assistant ko batayein kya mehsoos ho raha hai, ya sheher aur specialty se doctors filter karein.',
+  },
+  'landing.step2t': { en: 'Get a specialist suggestion', ur: 'Specialist suggestion payein' },
+  'landing.step2d': {
+    en: 'See the right specialist type — and a list of verified doctors who treat it.',
+    ur: 'Sahi specialist type dekhein — aur un verified doctors ki list jo is ka ilaj karte hain.',
+  },
+  'landing.step3t': { en: 'Book and confirm on WhatsApp', ur: 'Book karein, WhatsApp par confirm' },
+  'landing.step3d': {
+    en: 'Pick a slot and get your booking confirmed on WhatsApp.',
+    ur: 'Slot chunein aur apni booking WhatsApp par confirm karwayein.',
+  },
+
+  'landing.bandTitle': { en: 'Try the live demo right now', ur: 'Live demo abhi try karein' },
+  'landing.bandSub': {
+    en: 'Answer a few scripted questions, get a specialist suggestion, and browse verified doctors — all in your browser.',
+    ur: 'Kuch scripted sawalon ke jawab dein, specialist suggestion payein aur verified doctors browse karein — sab aap ke browser mein.',
+  },
+
+  'landing.testiTitle': { en: 'What finding the right specialist feels like', ur: 'Sahi specialist milna kaisa lagta hai' },
+  'landing.testiNote': {
+    en: 'Sample data — fictional patients, written for this demo.',
+    ur: 'Sample data — farzi patients, is demo ke liye likha gaya.',
+  },
+  'landing.t1': {
+    en: '"I kept visiting general doctors for my skin problem. SehatRah pointed me to a dermatologist — sorted in one visit."',
+    ur: '"Skin ke masle ke liye general doctors ko dikhata raha. SehatRah ne dermatologist ka bataya — ek hi visit mein masla hal."',
+  },
+  'landing.t1n': { en: 'Bilal S., Lahore — sample', ur: 'Bilal S., Lahore — sample' },
+  'landing.t2': {
+    en: '"The Verified badge made the difference. I could see the doctor’s registration before booking — that trust is new."',
+    ur: '"Verified badge ne farq dala. Booking se pehle doctor ki registration dekh saki — yeh aitmaad naya hai."',
+  },
+  'landing.t2n': { en: 'Sana K., Karachi — sample', ur: 'Sana K., Karachi — sample' },
+  'landing.t3': {
+    en: '"My mother’s knee pain needed an orthopedic specialist, not painkillers. The triage got it right the first time."',
+    ur: '"Ammi ke ghutne ke dard ke liye orthopedic specialist chahiye tha, painkillers nahi. Triage ne pehli dafa mein sahi bataya."',
+  },
+  'landing.t3n': { en: 'Imran T., Islamabad — sample', ur: 'Imran T., Islamabad — sample' },
+
+  'landing.faqTitle': { en: 'Questions, answered', ur: 'Sawalat aur jawab' },
+  'landing.faq1q': { en: 'Is this medical advice?', ur: 'Kya yeh medical advice hai?' },
+  'landing.faq1a': {
+    en: 'No. SehatRah only helps you find the right specialist type and shows verified doctors. It never diagnoses or prescribes. Yeh medical advice nahi hai, doctor se zaroor milein.',
+    ur: 'Nahi. SehatRah sirf sahi specialist type dhoondne mein madad karta hai aur verified doctors dikhata hai. Yeh diagnosis ya dawai nahi batata. Yeh medical advice nahi hai, doctor se zaroor milein.',
+  },
+  'landing.faq2q': { en: 'How is a doctor verified?', ur: 'Doctor verify kaise hota hai?' },
+  'landing.faq2a': {
+    en: 'Doctors submit their degree, registration number and CNIC. An admin checks the documents, and only then does the Verified badge appear on the profile.',
+    ur: 'Doctors apni degree, registration number aur CNIC submit karte hain. Admin documents check karta hai, aur tab hi profile par Verified badge lagta hai.',
+  },
+  'landing.faq3q': { en: 'What if it’s an emergency?', ur: 'Agar emergency ho to?' },
+  'landing.faq3a': {
+    en: 'Do not wait on the app. Go to the nearest hospital immediately or call 1122. The demo shows a red emergency card for urgent symptoms.',
+    ur: 'App ka intezar na karein. Foran qareebi hospital jayein ya 1122 call karein. Demo mein urgent alamat par red emergency card dikhta hai.',
+  },
+  'landing.faq4q': { en: 'Is my data stored?', ur: 'Kya mera data save hota hai?' },
+  'landing.faq4a': {
+    en: 'In this demo, everything stays in your own browser (local storage) — bookings, signups and language choice. Nothing is sent to a server.',
+    ur: 'Is demo mein sab kuch aap ke apne browser (local storage) mein rehta hai — bookings, signups aur language choice. Kuch bhi server ko nahi bheja jata.',
+  },
+  'landing.faq5q': { en: 'How do I get this for my clinic or hospital?', ur: 'Apne clinic ya hospital ke liye yeh kaise hasil karun?' },
+  'landing.faq5a': {
+    en: 'This is a demo built by AKCLNT. Use the “Build this for your business” button in the footer to start a WhatsApp chat with us.',
+    ur: 'Yeh AKCLNT ka banaya hua demo hai. Footer mein “Build this for your business” button se ham se WhatsApp par baat shuru karein.',
+  },
+
+  'landing.finalTitle': { en: 'Stop guessing. Find the right doctor.', ur: 'Andaza lagana band karein. Sahi doctor dhoondein.' },
+  'landing.finalSub': {
+    en: 'Try the scripted demo — it takes less than a minute.',
+    ur: 'Scripted demo try karein — ek minute se bhi kam lagega.',
+  },
+
   'common.book': { en: 'Book', ur: 'Book karein' },
   'common.cancel': { en: 'Cancel', ur: 'Cancel' },
   'common.today': { en: 'Today', ur: 'Aaj' },

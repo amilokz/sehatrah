@@ -1,11 +1,17 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { useLang } from './LangProvider';
 
-const LINKS = [
+const ANCHORS = [
+  { href: '/#features', key: 'nav.features' },
+  { href: '/#how', key: 'nav.how' },
+  { href: '/#browse', key: 'nav.findDoctors' },
+  { href: '/#faq', key: 'nav.faq' },
+];
+
+const ROUTES = [
   { href: '/', key: 'nav.home' },
   { href: '/doctors', key: 'nav.doctors' },
   { href: '/clinics', key: 'nav.clinics' },
@@ -17,7 +23,6 @@ const LINKS = [
 
 export default function Header() {
   const { tr, lang, toggleLang } = useLang();
-  const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
   return (
@@ -37,23 +42,15 @@ export default function Header() {
         </Link>
 
         <nav className="hidden items-center gap-1 rounded-full border border-slate-200/70 bg-white/60 p-1 shadow-card backdrop-blur lg:flex" aria-label="Main navigation">
-          {LINKS.map((l) => {
-            const active = pathname === l.href;
-            return (
-              <Link
-                key={l.href}
-                href={l.href}
-                aria-current={active ? 'page' : undefined}
-                className={`rounded-full px-3.5 py-1.5 text-[13px] font-semibold transition-all duration-200 ${
-                  active
-                    ? 'bg-gradient-to-b from-brand-500 to-brand-600 text-white shadow-soft'
-                    : 'text-slate-600 hover:bg-brand-50 hover:text-brand-700'
-                }`}
-              >
-                {tr(l.key)}
-              </Link>
-            );
-          })}
+          {ANCHORS.map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              className="rounded-full px-3.5 py-1.5 text-[13px] font-semibold text-slate-600 transition-all duration-200 hover:bg-brand-50 hover:text-brand-700"
+            >
+              {tr(l.key)}
+            </Link>
+          ))}
         </nav>
 
         <div className="flex items-center gap-2">
@@ -65,6 +62,13 @@ export default function Header() {
           >
             {lang === 'en' ? 'اردو' : 'EN'}
           </button>
+          <Link
+            href="/triage"
+            className="hidden items-center gap-2 rounded-xl bg-gradient-to-b from-brand-500 to-brand-600 px-5 py-2 text-sm font-bold text-white shadow-soft transition-all duration-200 hover:from-brand-600 hover:to-brand-700 hover:shadow-glow-sm active:scale-[0.98] sm:inline-flex"
+          >
+            {tr('nav.tryDemo')}
+            <span aria-hidden>→</span>
+          </Link>
           <button
             type="button"
             className="rounded-xl border border-slate-200 bg-white p-2 text-slate-600 shadow-card transition-colors hover:bg-slate-50 lg:hidden"
@@ -82,16 +86,31 @@ export default function Header() {
       {open && (
         <nav className="animate-rise border-t border-brand-100/70 bg-white/95 px-4 py-3 backdrop-blur-xl lg:hidden" aria-label="Mobile navigation">
           <div className="grid gap-1">
-            {LINKS.map((l) => (
+            {ANCHORS.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className={`rounded-xl px-4 py-2.5 text-sm font-semibold transition-colors ${
-                  pathname === l.href
-                    ? 'bg-gradient-to-r from-brand-600 to-brand-500 text-white shadow-soft'
-                    : 'text-slate-700 hover:bg-brand-50 hover:text-brand-700'
-                }`}
+                className="rounded-xl px-4 py-2.5 text-sm font-semibold text-slate-700 transition-colors hover:bg-brand-50 hover:text-brand-700"
+              >
+                {tr(l.key)}
+              </Link>
+            ))}
+            <Link
+              href="/triage"
+              onClick={() => setOpen(false)}
+              className="mt-1 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-b from-brand-500 to-brand-600 px-4 py-2.5 text-sm font-bold text-white shadow-soft"
+            >
+              {tr('nav.tryDemo')}
+              <span aria-hidden>→</span>
+            </Link>
+            <div className="hairline my-2" aria-hidden />
+            {ROUTES.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className="rounded-xl px-4 py-2 text-sm font-medium text-slate-500 transition-colors hover:bg-slate-50 hover:text-brand-700"
               >
                 {tr(l.key)}
               </Link>
