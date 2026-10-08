@@ -10,7 +10,6 @@ export const STRINGS: Dict = {
   'nav.medicine': { en: 'Medicine Check', ur: 'Dawai Check' },
   'nav.signup': { en: 'Join as Doctor', ur: 'Doctor ke tor par join karein' },
   'nav.admin': { en: 'Admin', ur: 'Admin' },
-  'topbar.moreDemos': { en: '← More demos by AKCLNT', ur: '← AKCLNT ke mazeed demos' },
   'footer.demoNote': { en: 'Demo — sample data. Built by AKCLNT.', ur: 'Demo — sample data. AKCLNT ne banaya.' },
   'footer.buildCta': { en: 'Build this for your business', ur: 'Apne business ke liye banwayein' },
   'footer.tagline': {

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useLang } from '@/components/LangProvider';
+import PageHeader from '@/components/PageHeader';
 import { CITIES, SPECIALTIES, type Signup } from '@/lib/types';
 import { readJSON, writeJSON } from '@/lib/storage';
 
@@ -72,32 +73,32 @@ export default function SignupPage() {
     setDone(signup);
   };
 
-  const inputCls =
-    'w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-800 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200';
-  const labelCls = 'mb-1.5 block text-xs font-bold uppercase tracking-wide text-slate-500';
+  const inputCls = 'input-base';
+  const labelCls = 'label-base';
 
   if (done) {
     return (
       <div className="mx-auto max-w-xl px-4 py-12 sm:px-6">
-        <div className="rounded-3xl border border-brand-100 bg-white p-8 text-center shadow-soft">
-          <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-amber-100">
+        <div className="card animate-pop-in relative overflow-hidden p-8 text-center shadow-lift">
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-amber-100/60 to-transparent" aria-hidden />
+          <span className="relative mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-b from-amber-100 to-amber-200 ring-1 ring-amber-200">
             <svg viewBox="0 0 24 24" className="h-8 w-8 text-amber-600" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round">
               <circle cx="12" cy="12" r="9" />
               <path d="M12 7v5l3 3" />
             </svg>
           </span>
-          <h1 className="mt-4 text-2xl font-extrabold text-brand-950">{tr('signup.successTitle')}</h1>
-          <span className="mt-2 inline-block rounded-full bg-amber-100 px-4 py-1 text-xs font-extrabold uppercase tracking-wide text-amber-700">
+          <h1 className="relative mt-4 text-2xl font-extrabold tracking-tight text-brand-950">{tr('signup.successTitle')}</h1>
+          <span className="relative mt-3 inline-block rounded-full bg-amber-100 px-4 py-1 text-xs font-extrabold uppercase tracking-widest text-amber-700 ring-1 ring-amber-200">
             {tr('signup.pending')}
           </span>
-          <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-slate-500">{tr('signup.successBody')}</p>
-          <p className="mt-4 text-sm">
+          <p className="relative mx-auto mt-3 max-w-md text-sm leading-relaxed text-slate-500">{tr('signup.successBody')}</p>
+          <p className="relative mt-4 text-sm">
             <span className="font-bold text-slate-600">{tr('signup.refId')}: </span>
-            <span className="rounded bg-slate-100 px-2 py-1 font-mono text-xs font-bold text-brand-700">{done.id}</span>
+            <span className="rounded-lg bg-brand-50 px-2.5 py-1 font-mono text-xs font-bold text-brand-700 ring-1 ring-brand-100">{done.id}</span>
           </p>
           <Link
             href="/doctors"
-            className="mt-6 inline-block rounded-full bg-brand-600 px-6 py-2.5 text-sm font-bold text-white hover:bg-brand-700"
+            className="btn-primary relative mt-6"
           >
             {tr('nav.doctors')} →
           </Link>
@@ -109,8 +110,8 @@ export default function SignupPage() {
   const fileField = (k: 'degree' | 'cert' | 'cnic', label: string) => (
     <div>
       <label className={labelCls}>{label}</label>
-      <label className="flex cursor-pointer items-center justify-center gap-2 rounded-xl border-2 border-dashed border-slate-300 bg-calm-50 px-3 py-3 text-sm font-medium text-slate-500 transition-colors hover:border-brand-400 hover:text-brand-700">
-        <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round">
+      <label className="group flex cursor-pointer items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-brand-200 bg-gradient-to-b from-brand-50/60 to-calm-50 px-3 py-4 text-sm font-semibold text-slate-500 transition-all duration-200 hover:border-brand-400 hover:from-brand-50 hover:text-brand-700">
+        <svg viewBox="0 0 24 24" className="h-5 w-5 transition-transform duration-200 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round">
           <path d="M12 16V4m0 0 4 4m-4-4L8 8M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3" />
         </svg>
         {files[k] || (lang === 'ur' ? 'File chunein' : 'Choose file')}
@@ -121,11 +122,10 @@ export default function SignupPage() {
   );
 
   return (
-    <div className="mx-auto max-w-2xl px-4 py-8 sm:px-6">
-      <h1 className="text-center text-2xl font-extrabold text-brand-950 sm:text-3xl">{tr('signup.title')}</h1>
-      <p className="mx-auto mt-2 max-w-xl text-center text-sm text-slate-500">{tr('signup.subtitle')}</p>
+    <div className="mx-auto max-w-2xl px-4 py-10 sm:px-6">
+      <PageHeader eyebrow={tr('nav.signup')} title={tr('signup.title')} subtitle={tr('signup.subtitle')} />
 
-      <form onSubmit={submit} className="mt-6 rounded-3xl border border-brand-100 bg-white p-6 shadow-soft sm:p-8">
+      <form onSubmit={submit} className="card stagger-2 mt-8 animate-rise p-6 shadow-lift sm:p-8">
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="sm:col-span-2">
             <label htmlFor="su-name" className={labelCls}>{tr('signup.name')}</label>
@@ -185,7 +185,7 @@ export default function SignupPage() {
 
         <button
           type="submit"
-          className="mt-6 w-full rounded-xl bg-brand-600 py-3 text-sm font-bold text-white shadow-soft transition-colors hover:bg-brand-700"
+          className="btn-primary mt-6 w-full !py-3.5 !text-base"
         >
           {tr('signup.submit')}
         </button>

@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useLang } from './LangProvider';
 import { DoctorCard } from './DoctorBits';
+import PageHeader from './PageHeader';
 import { doctorsWithOverrides } from '@/lib/overrides';
 import { CITIES, SPECIALTIES } from '@/lib/types';
 import { readJSON } from '@/lib/storage';
@@ -61,25 +62,24 @@ export default function DoctorsClient() {
     setVerifiedOnly(false);
   };
 
-  const selectCls =
-    'w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm font-medium text-slate-800 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200';
-  const labelCls = 'mb-1 block text-xs font-bold uppercase tracking-wide text-slate-500';
+  const selectCls = 'select-base';
+  const labelCls = 'label-base';
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
-      <h1 className="text-2xl font-extrabold text-brand-950 sm:text-3xl">{tr('doctors.title')}</h1>
-      <p className="mt-1.5 text-sm text-slate-500">{tr('doctors.subtitle')}</p>
+    <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
+      <PageHeader eyebrow={tr('doctors.filters')} title={tr('doctors.title')} subtitle={tr('doctors.subtitle')} />
 
-      <div className="mt-6 grid gap-6 lg:grid-cols-[260px_1fr]">
+      <div className="mt-10 grid gap-6 lg:grid-cols-[280px_1fr]">
         {/* Filters */}
-        <aside className="h-fit rounded-2xl border border-slate-200 bg-white p-5 shadow-card lg:sticky lg:top-24">
+        <aside className="stagger-2 h-fit animate-rise rounded-3xl border border-brand-100/70 bg-white p-6 shadow-soft lg:sticky lg:top-24">
           <div className="flex items-center justify-between">
-            <h2 className="text-sm font-extrabold uppercase tracking-wide text-slate-700">{tr('doctors.filters')}</h2>
-            <button type="button" onClick={reset} className="text-xs font-semibold text-brand-600 hover:text-brand-800">
+            <h2 className="text-xs font-extrabold uppercase tracking-[0.14em] text-slate-700">{tr('doctors.filters')}</h2>
+            <button type="button" onClick={reset} className="btn-ghost !px-2 !py-1 text-xs">
               {tr('doctors.reset')}
             </button>
           </div>
-          <div className="mt-4 space-y-4">
+          <div className="hairline my-4" aria-hidden />
+          <div className="space-y-4">
             <div>
               <label htmlFor="f-city" className={labelCls}>{tr('doctors.city')}</label>
               <select id="f-city" value={city} onChange={(e) => setCity(e.target.value)} className={selectCls}>
@@ -138,17 +138,26 @@ export default function DoctorsClient() {
 
         {/* Results */}
         <div>
-          <p className="mb-4 text-sm font-semibold text-slate-500">
-            <span className="text-lg font-extrabold text-brand-700">{results.length}</span> {tr('doctors.results')}
+          <p className="stagger-3 mb-5 flex animate-rise items-baseline gap-2 text-sm font-semibold text-slate-500">
+            <span className="text-gradient text-2xl font-extrabold tracking-tight">{results.length}</span>
+            {tr('doctors.results')}
           </p>
           {results.length === 0 ? (
-            <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center text-sm text-slate-500">
-              {tr('doctors.none')}
+            <div className="rounded-3xl border-2 border-dashed border-brand-200 bg-white/60 p-12 text-center shadow-card">
+              <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-50 text-brand-400">
+                <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round">
+                  <circle cx="11" cy="11" r="7" />
+                  <path d="m20 20-3.8-3.8" />
+                </svg>
+              </span>
+              <p className="mt-4 text-sm font-medium text-slate-500">{tr('doctors.none')}</p>
             </div>
           ) : (
             <div className="grid gap-4 md:grid-cols-2">
-              {results.map((d) => (
-                <DoctorCard key={d.id} doctor={d} featured={featured.includes(d.id)} />
+              {results.map((d, i) => (
+                <div key={d.id} className="stagger-2 animate-rise" style={{ animationDelay: `${Math.min(i, 6) * 0.06}s` }}>
+                  <DoctorCard doctor={d} featured={featured.includes(d.id)} />
+                </div>
               ))}
             </div>
           )}

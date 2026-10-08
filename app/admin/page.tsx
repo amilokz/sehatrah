@@ -47,19 +47,20 @@ export default function AdminPage() {
   if (!loggedIn) {
     return (
       <div className="mx-auto max-w-md px-4 py-16 sm:px-6">
-        <div className="rounded-3xl border border-brand-100 bg-white p-8 text-center shadow-soft">
-          <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-100">
-            <svg viewBox="0 0 24 24" className="h-7 w-7 text-brand-600" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round">
+        <div className="card animate-pop-in relative overflow-hidden p-8 text-center shadow-lift">
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-brand-100/70 to-transparent" aria-hidden />
+          <span className="relative mx-auto flex h-16 w-16 items-center justify-center rounded-3xl bg-gradient-to-br from-brand-500 to-brand-700 text-white shadow-glow-sm">
+            <svg viewBox="0 0 24 24" className="h-8 w-8" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round">
               <rect x="4" y="10" width="16" height="10" rx="2" />
               <path d="M8 10V7a4 4 0 0 1 8 0v3" />
             </svg>
           </span>
-          <h1 className="mt-4 text-xl font-extrabold text-brand-950">{tr('admin.loginTitle')}</h1>
-          <p className="mt-2 text-sm text-slate-500">{tr('admin.loginSub')}</p>
+          <h1 className="relative mt-4 text-xl font-extrabold tracking-tight text-brand-950">{tr('admin.loginTitle')}</h1>
+          <p className="relative mt-2 text-sm text-slate-500">{tr('admin.loginSub')}</p>
           <button
             type="button"
             onClick={login}
-            className="mt-5 w-full rounded-xl bg-brand-600 py-3 text-sm font-bold text-white transition-colors hover:bg-brand-700"
+            className="btn-primary relative mt-6 w-full"
           >
             {tr('admin.loginBtn')}
           </button>
@@ -133,24 +134,27 @@ export default function AdminPage() {
   const sectionTitle = 'text-lg font-extrabold text-brand-950';
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6">
-      <div className="flex items-center justify-between gap-3">
+    <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
+      <div className="flex animate-rise flex-wrap items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-extrabold text-brand-950 sm:text-3xl">{tr('admin.loginTitle')}</h1>
-          <p className="mt-1 text-xs font-semibold text-slate-400">Demo session — {lang === 'ur' ? 'koi asli auth nahi' : 'no real auth'}</p>
+          <h1 className="text-2xl font-extrabold tracking-tight text-brand-950 sm:text-3xl">{tr('admin.loginTitle')}</h1>
+          <p className="mt-1.5 inline-flex items-center gap-1.5 rounded-full bg-amber-50 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-amber-700 ring-1 ring-amber-200">
+            <span className="h-1.5 w-1.5 animate-pulse-soft rounded-full bg-amber-500" aria-hidden />
+            Demo session — {lang === 'ur' ? 'koi asli auth nahi' : 'no real auth'}
+          </p>
         </div>
         <div className="flex gap-2">
           <button
             type="button"
             onClick={resetAll}
-            className="rounded-xl border border-red-200 bg-red-50 px-4 py-2 text-xs font-bold text-red-600 transition-colors hover:bg-red-100"
+            className="inline-flex items-center gap-2 rounded-xl border border-red-200 bg-red-50 px-4 py-2.5 text-xs font-bold text-red-600 transition-all duration-200 hover:-translate-y-0.5 hover:bg-red-100 hover:shadow-[0_6px_16px_-6px_rgba(220,38,38,0.4)]"
           >
             {tr('admin.reset')}
           </button>
           <button
             type="button"
             onClick={logout}
-            className="rounded-xl border border-slate-200 px-4 py-2 text-xs font-bold text-slate-600 hover:bg-slate-50"
+            className="btn-secondary !px-4 !py-2.5 !text-xs"
           >
             {tr('admin.logout')}
           </button>
@@ -158,20 +162,25 @@ export default function AdminPage() {
       </div>
 
       {/* Verification queue */}
-      <section className="mt-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-card">
+      <section className="card animate-rise mt-8 p-6 sm:p-7">
         <h2 className={sectionTitle}>{tr('admin.queue')}</h2>
         <p className="mt-1 text-sm text-slate-500">{tr('admin.queueSub')}</p>
         {queue.length === 0 ? (
-          <p className="mt-4 rounded-xl bg-emerald-50 p-4 text-sm font-semibold text-emerald-700">{tr('admin.noQueue')}</p>
+          <p className="mt-5 flex items-center gap-2 rounded-2xl bg-emerald-50 p-4 text-sm font-semibold text-emerald-700 ring-1 ring-emerald-100">
+            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor">
+              <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm-1.2 14.6-4-4 1.4-1.4 2.6 2.6 6.6-6.6 1.4 1.4-8 8Z" />
+            </svg>
+            {tr('admin.noQueue')}
+          </p>
         ) : (
-          <ul className="mt-4 space-y-3">
+          <ul className="mt-5 space-y-3">
             {queue.map((item) => (
-              <li key={item.key} className="flex flex-col gap-3 rounded-xl border border-slate-100 bg-calm-50 p-4 sm:flex-row sm:items-center">
+              <li key={item.key} className="flex flex-col gap-3 rounded-2xl border border-slate-100 bg-gradient-to-b from-calm-50 to-white p-4 transition-all duration-200 hover:border-brand-200 hover:shadow-card sm:flex-row sm:items-center">
                 <InitialsAvatar name={item.name} size="sm" />
                 <div className="min-w-0 flex-1">
                   <p className="text-sm font-bold text-slate-900">
                     {item.name}
-                    <span className="ml-2 rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-extrabold uppercase text-amber-700">
+                    <span className="ml-2 rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-wider text-amber-700 ring-1 ring-amber-200">
                       {tr('admin.pending')}
                     </span>
                   </p>
@@ -182,14 +191,14 @@ export default function AdminPage() {
                   <button
                     type="button"
                     onClick={() => approveItem(item)}
-                    className="rounded-lg bg-emerald-600 px-4 py-2 text-xs font-bold text-white hover:bg-emerald-700"
+                    className="rounded-xl bg-gradient-to-b from-emerald-500 to-emerald-600 px-5 py-2 text-xs font-bold text-white shadow-[0_4px_12px_-4px_rgba(16,185,129,0.6)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_18px_-6px_rgba(16,185,129,0.7)] active:translate-y-0"
                   >
                     {tr('admin.approve')}
                   </button>
                   <button
                     type="button"
                     onClick={() => rejectItem(item)}
-                    className="rounded-lg bg-red-100 px-4 py-2 text-xs font-bold text-red-600 hover:bg-red-200"
+                    className="rounded-xl bg-red-100 px-5 py-2 text-xs font-bold text-red-600 transition-all duration-200 hover:bg-red-200"
                   >
                     {tr('admin.reject')}
                   </button>
@@ -213,11 +222,11 @@ export default function AdminPage() {
       </section>
 
       {/* Reported reviews */}
-      <section className="mt-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-card">
+      <section className="card animate-rise mt-6 p-6 sm:p-7">
         <h2 className={sectionTitle}>{tr('admin.reports')}</h2>
         <p className="mt-1 text-sm text-slate-500">{tr('admin.reportsSub')}</p>
         {reported.filter((r, i) => !reportStatuses[`${r.doctorId}-${i}`]).length === 0 ? (
-          <p className="mt-4 rounded-xl bg-slate-50 p-4 text-sm font-semibold text-slate-500">{tr('admin.noReports')}</p>
+          <p className="mt-5 rounded-2xl bg-calm-50 p-4 text-sm font-semibold text-slate-500 ring-1 ring-slate-100">{tr('admin.noReports')}</p>
         ) : (
           <ul className="mt-4 space-y-3">
             {reported.map((r, i) => {
@@ -259,14 +268,14 @@ export default function AdminPage() {
       </section>
 
       {/* Featured listings */}
-      <section className="mt-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-card">
+      <section className="card animate-rise mt-6 p-6 sm:p-7">
         <h2 className={sectionTitle}>{tr('admin.featured')}</h2>
         <p className="mt-1 text-sm text-slate-500">{tr('admin.featuredSub')}</p>
         <ul className="mt-4 grid gap-2 sm:grid-cols-2">
           {DOCTORS.map((d) => {
             const on = featured.includes(d.id);
             return (
-              <li key={d.id} className="flex items-center justify-between gap-2 rounded-xl border border-slate-100 px-3 py-2">
+              <li key={d.id} className="flex items-center justify-between gap-2 rounded-2xl border border-slate-100 bg-white px-3.5 py-2.5 transition-all duration-200 hover:border-brand-200 hover:shadow-card">
                 <span className="flex min-w-0 items-center gap-2">
                   <InitialsAvatar name={d.name} size="sm" />
                   <span className="min-w-0">
@@ -280,10 +289,10 @@ export default function AdminPage() {
                   role="switch"
                   aria-checked={on}
                   onClick={() => { toggleFeatured(d.id); refresh(); }}
-                  className={`relative h-6 w-11 shrink-0 rounded-full transition-colors ${on ? 'bg-brand-600' : 'bg-slate-300'}`}
+                  className={`relative h-7 w-12 shrink-0 rounded-full transition-all duration-200 ${on ? 'bg-gradient-to-b from-brand-500 to-brand-600 shadow-glow-sm' : 'bg-slate-300 hover:bg-slate-400'}`}
                   aria-label={`${d.name} featured`}
                 >
-                  <span className={`absolute top-0.5 h-5 w-5 rounded-full bg-white shadow transition-all ${on ? 'left-[22px]' : 'left-0.5'}`} />
+                  <span className={`absolute top-1 h-5 w-5 rounded-full bg-white shadow transition-all duration-200 ${on ? 'left-6' : 'left-1'}`} />
                 </button>
               </li>
             );

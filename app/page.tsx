@@ -75,32 +75,43 @@ export default function HomePage() {
 
   return (
     <div>
-      {/* HERO */}
-      <section className="bg-dots bg-calm-50">
-        <div className="mx-auto max-w-7xl px-4 pb-12 pt-10 sm:px-6 sm:pt-16">
+      {/* HERO — premium calm mesh */}
+      <section className="mesh-hero relative overflow-hidden">
+        <div className="pointer-events-none absolute inset-0" aria-hidden>
+          <div className="orb left-[6%] top-[8%] h-64 w-64 animate-drift bg-brand-300/40" />
+          <div className="orb right-[8%] top-[30%] h-72 w-72 animate-drift bg-sky-300/35 [animation-delay:-5s]" />
+          <div className="orb left-[42%] top-[-10%] h-56 w-56 animate-float bg-brand-200/50" />
+          <div className="bg-dots absolute inset-0 opacity-70" />
+        </div>
+
+        <div className="relative mx-auto max-w-7xl px-4 pb-16 pt-14 sm:px-6 sm:pt-24">
           <div className="mx-auto max-w-3xl text-center">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-100 px-4 py-1.5 text-xs font-bold text-brand-700">
-              <span className="h-2 w-2 animate-pulse rounded-full bg-brand-500" />
+            <span className="stagger-1 inline-flex animate-rise items-center gap-2 rounded-full border border-brand-200/80 bg-white/80 px-4 py-1.5 text-xs font-extrabold text-brand-700 shadow-card backdrop-blur">
+              <span className="h-2 w-2 animate-pulse-soft rounded-full bg-gradient-to-r from-brand-500 to-sky-400" />
               Demo · Sample data
+              <span className="rounded-full bg-brand-100 px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-wider text-brand-600">
+                {tr('triage.simLabel')}
+              </span>
             </span>
-            <h1 className="mt-5 text-3xl font-extrabold leading-tight tracking-tight text-brand-950 sm:text-5xl">
-              {tr('home.tagline')}
+
+            <h1 className="stagger-2 mt-6 animate-rise text-4xl font-extrabold leading-[1.1] tracking-tight text-brand-950 sm:text-6xl">
+              <span className="text-gradient">SehatRah</span> — {tr('home.tagline')}
             </h1>
 
             {/* Search card — try it immediately */}
             <form
               onSubmit={submit}
-              className="mx-auto mt-8 grid gap-3 rounded-3xl border border-brand-100 bg-white p-4 text-left shadow-soft sm:grid-cols-[1fr_1fr_auto] sm:items-end sm:p-5"
+              className="stagger-3 glass mx-auto mt-10 grid animate-rise gap-3 rounded-3xl p-4 text-left sm:grid-cols-[1fr_1fr_auto] sm:items-end sm:p-5"
             >
               <div>
-                <label htmlFor="home-city" className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-slate-500">
+                <label htmlFor="home-city" className="label-base">
                   {tr('home.city')}
                 </label>
                 <select
                   id="home-city"
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
-                  className="w-full rounded-xl border border-slate-200 bg-white px-3 py-3 text-sm font-medium text-slate-800 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
+                  className="select-base"
                 >
                   <option value="">{tr('home.allCities')}</option>
                   {CITIES.map((c) => (
@@ -109,14 +120,14 @@ export default function HomePage() {
                 </select>
               </div>
               <div>
-                <label htmlFor="home-specialty" className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-slate-500">
+                <label htmlFor="home-specialty" className="label-base">
                   {tr('home.specialty')}
                 </label>
                 <select
                   id="home-specialty"
                   value={specialty}
                   onChange={(e) => setSpecialty(e.target.value)}
-                  className="w-full rounded-xl border border-slate-200 bg-white px-3 py-3 text-sm font-medium text-slate-800 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
+                  className="select-base"
                 >
                   <option value="">{tr('home.allSpecialties')}</option>
                   {SPECIALTIES.map((s) => (
@@ -124,10 +135,11 @@ export default function HomePage() {
                   ))}
                 </select>
               </div>
-              <button
-                type="submit"
-                className="rounded-xl bg-brand-600 px-6 py-3 text-sm font-bold text-white shadow-soft transition-colors hover:bg-brand-700"
-              >
+              <button type="submit" className="btn-primary whitespace-nowrap">
+                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2.4} strokeLinecap="round">
+                  <circle cx="11" cy="11" r="7" />
+                  <path d="m20 20-3.8-3.8" />
+                </svg>
                 {tr('home.searchBtn')}
               </button>
             </form>
@@ -135,31 +147,35 @@ export default function HomePage() {
             {/* AI triage CTA */}
             <Link
               href="/triage"
-              className="group mx-auto mt-4 flex max-w-xl items-center gap-4 rounded-2xl border-2 border-dashed border-brand-300 bg-white/70 p-4 text-left transition-all hover:border-brand-500 hover:bg-white"
+              className="stagger-4 group mx-auto mt-5 flex max-w-xl animate-rise items-center gap-4 rounded-3xl border border-brand-200/70 bg-white/80 p-4 text-left shadow-card backdrop-blur transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-400 hover:bg-white hover:shadow-lift"
             >
-              <span className="flex h-12 w-12 shrink-0 animate-float items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-indigo-600 text-white">
+              <span className="flex h-13 w-13 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 via-brand-600 to-indigo-600 p-3 text-white shadow-glow-sm transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
                 <Icon name="chat" />
               </span>
               <span className="flex-1">
-                <span className="block text-base font-extrabold text-brand-900 group-hover:text-brand-700">
+                <span className="block text-base font-extrabold text-brand-950 group-hover:text-brand-700">
                   {tr('home.askAI')}
                 </span>
                 <span className="block text-sm text-slate-500">{tr('home.askAISub')}</span>
               </span>
-              <span className="text-2xl text-brand-400 transition-transform group-hover:translate-x-1">→</span>
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-50 text-xl text-brand-500 transition-all duration-300 group-hover:translate-x-1 group-hover:bg-brand-600 group-hover:text-white">
+                →
+              </span>
             </Link>
           </div>
 
           {/* Stats */}
-          <div className="mx-auto mt-10 grid max-w-3xl grid-cols-3 gap-3 text-center">
+          <div className="stagger-5 mx-auto mt-12 grid max-w-3xl animate-rise grid-cols-3 gap-3 text-center sm:gap-4">
             {[
               { n: `${verifiedCount}`, k: 'home.stats.doctors' },
               { n: `${CITIES.length}`, k: 'home.stats.cities' },
               { n: `${SPECIALTIES.length}`, k: 'home.stats.specialties' },
             ].map((s) => (
-              <div key={s.k} className="rounded-2xl border border-brand-100 bg-white p-4 shadow-card">
-                <p className="text-2xl font-extrabold text-brand-700 sm:text-3xl">{s.n}</p>
-                <p className="mt-1 text-xs font-medium text-slate-500">{tr(s.k)}</p>
+              <div key={s.k} className="glass rounded-3xl p-4 sm:p-6">
+                <p className="text-gradient text-3xl font-extrabold tracking-tight sm:text-4xl">{s.n}</p>
+                <p className="mt-1.5 text-[11px] font-semibold uppercase tracking-wide text-slate-500 sm:text-xs">
+                  {tr(s.k)}
+                </p>
               </div>
             ))}
           </div>
@@ -167,16 +183,25 @@ export default function HomePage() {
       </section>
 
       {/* HOW IT WORKS */}
-      <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6">
-        <h2 className="text-center text-2xl font-extrabold text-brand-950 sm:text-3xl">{tr('home.howTitle')}</h2>
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20">
+        <p className="text-center text-xs font-extrabold uppercase tracking-[0.18em] text-brand-600">
+          {tr('home.howTitle')}
+        </p>
+        <div className="relative mt-8 grid gap-5 md:grid-cols-3">
+          <div className="absolute left-[16%] right-[16%] top-12 hidden h-px bg-gradient-to-r from-transparent via-brand-200 to-transparent md:block" aria-hidden />
           {STEPS.map((s, i) => (
-            <div key={s.title} className="relative rounded-2xl border border-slate-200 bg-white p-6 shadow-card">
-              <span className="absolute right-5 top-4 text-4xl font-extrabold text-brand-100">{i + 1}</span>
-              <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-brand-600">
+            <div
+              key={s.title}
+              className="card card-hover relative animate-rise p-6 sm:p-7"
+              style={{ animationDelay: `${i * 0.08}s` }}
+            >
+              <span className="pointer-events-none absolute right-5 top-4 bg-gradient-to-b from-brand-100 to-transparent bg-clip-text text-5xl font-extrabold text-transparent" aria-hidden>
+                {i + 1}
+              </span>
+              <span className="relative flex h-13 w-13 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-50 to-brand-100 p-3 text-brand-600 ring-1 ring-brand-200/60">
                 <Icon name={s.icon} />
               </span>
-              <h3 className="mt-4 text-lg font-bold text-slate-900">{tr(s.title)}</h3>
+              <h3 className="mt-4 text-lg font-extrabold tracking-tight text-slate-900">{tr(s.title)}</h3>
               <p className="mt-1.5 text-sm leading-relaxed text-slate-500">{tr(s.desc)}</p>
             </div>
           ))}
@@ -184,26 +209,34 @@ export default function HomePage() {
       </section>
 
       {/* WHY */}
-      <section className="border-y border-brand-100 bg-white">
-        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6">
-          <h2 className="text-center text-2xl font-extrabold text-brand-950 sm:text-3xl">{tr('home.whyTitle')}</h2>
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
-            {WHY.map((w) => (
-              <div key={w.title} className="rounded-2xl bg-calm-50 p-6">
-                <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 text-white shadow-soft">
+      <section className="mesh-hero relative overflow-hidden border-y border-brand-100/60">
+        <div className="pointer-events-none absolute inset-0" aria-hidden>
+          <div className="orb left-[10%] top-[20%] h-56 w-56 animate-drift bg-brand-300/30" />
+          <div className="orb right-[12%] bottom-[10%] h-64 w-64 animate-drift bg-sky-300/30 [animation-delay:-8s]" />
+        </div>
+        <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20">
+          <p className="text-center text-xs font-extrabold uppercase tracking-[0.18em] text-brand-600">
+            {tr('home.whyTitle')}
+          </p>
+          <div className="mt-8 grid gap-5 md:grid-cols-3">
+            {WHY.map((w, i) => (
+              <div
+                key={w.title}
+                className="glass card-hover rounded-3xl p-6 animate-rise sm:p-7"
+                style={{ animationDelay: `${i * 0.08}s` }}
+              >
+                <span className="flex h-13 w-13 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 p-3 text-white shadow-glow-sm">
                   <Icon name={w.icon} />
                 </span>
-                <h3 className="mt-4 text-lg font-bold text-slate-900">{tr(w.title)}</h3>
+                <h3 className="mt-4 text-lg font-extrabold tracking-tight text-slate-900">{tr(w.title)}</h3>
                 <p className="mt-1.5 text-sm leading-relaxed text-slate-500">{tr(w.desc)}</p>
               </div>
             ))}
           </div>
-          <div className="mt-10 text-center">
-            <Link
-              href="/doctors"
-              className="inline-block rounded-full bg-brand-600 px-8 py-3.5 text-sm font-bold text-white shadow-soft transition-colors hover:bg-brand-700"
-            >
-              {tr('home.searchBtn')} →
+          <div className="mt-12 text-center">
+            <Link href="/doctors" className="btn-primary-lg group">
+              {tr('home.searchBtn')}
+              <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
             </Link>
           </div>
         </div>

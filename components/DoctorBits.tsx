@@ -23,7 +23,7 @@ export function InitialsAvatar({ name, size = 'md' }: { name: string; size?: 'sm
   return (
     <span
       aria-hidden
-      className={`flex shrink-0 items-center justify-center rounded-full bg-gradient-to-br font-extrabold text-white ${bg} ${sizes[size]}`}
+      className={`relative flex shrink-0 items-center justify-center rounded-full bg-gradient-to-br font-extrabold text-white ring-2 ring-brand-100 ring-offset-2 ring-offset-white ${bg} ${sizes[size]}`}
     >
       {initials(name)}
     </span>
@@ -34,7 +34,7 @@ export function VerifiedBadge({ small = false }: { small?: boolean }) {
   const { tr } = useLang();
   return (
     <span
-      className={`inline-flex items-center gap-1 rounded-full bg-brand-600 font-bold text-white ${
+      className={`inline-flex items-center gap-1 rounded-full bg-gradient-to-b from-brand-500 to-brand-600 font-bold text-white shadow-[0_2px_8px_-2px_rgba(37,99,235,0.6)] ring-1 ring-white/30 ${
         small ? 'px-2 py-0.5 text-[10px]' : 'px-2.5 py-1 text-xs'
       }`}
       title={tr('doctors.verified')}
@@ -69,8 +69,12 @@ export function DoctorCard({ doctor, featured = false }: { doctor: Doctor; featu
   return (
     <Link
       href={`/doctors/${doctor.id}`}
-      className="group flex gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-card transition-all hover:-translate-y-1 hover:border-brand-200 hover:shadow-soft sm:p-5"
+      className="group card card-hover relative flex gap-4 overflow-hidden p-4 sm:p-5"
     >
+      <span
+        className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand-400 via-sky-400 to-brand-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        aria-hidden
+      />
       <InitialsAvatar name={doctor.name} />
       <div className="min-w-0 flex-1">
         <div className="flex flex-wrap items-center gap-2">

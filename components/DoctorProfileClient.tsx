@@ -91,17 +91,19 @@ export default function DoctorProfileClient() {
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6">
-      <Link href="/doctors" className="text-sm font-semibold text-brand-600 hover:text-brand-800">
+      <Link href="/doctors" className="group inline-flex items-center gap-1.5 text-sm font-bold text-brand-600 transition-colors hover:text-brand-800">
+        <span className="transition-transform duration-200 group-hover:-translate-x-1">←</span>
         {tr('profile.back')}
       </Link>
 
       {/* Header card */}
-      <div className="mt-4 rounded-3xl border border-brand-100 bg-white p-6 shadow-soft sm:p-8">
-        <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
+      <div className="card animate-rise relative mt-4 overflow-hidden p-6 shadow-lift sm:p-8">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-brand-100/70 to-transparent" aria-hidden />
+        <div className="relative flex flex-col gap-5 sm:flex-row sm:items-start">
           <InitialsAvatar name={doctor.name} size="lg" />
           <div className="min-w-0 flex-1">
             <div className="flex flex-wrap items-center gap-2">
-              <h1 className="text-2xl font-extrabold text-brand-950">{doctor.name}</h1>
+              <h1 className="text-2xl font-extrabold tracking-tight text-brand-950 sm:text-3xl">{doctor.name}</h1>
               {doctor.verified && <VerifiedBadge />}
             </div>
             <p className="mt-1 font-medium text-brand-700">{doctor.specialty}</p>
@@ -131,8 +133,8 @@ export default function DoctorProfileClient() {
       <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_380px]">
         {/* Details */}
         <div className="space-y-6">
-          <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-card">
-            <h2 className="text-sm font-extrabold uppercase tracking-wide text-slate-700">{tr('profile.qualifications')}</h2>
+          <section className="card animate-rise p-6 sm:p-7">
+            <h2 className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.14em] text-slate-500"><span className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-brand-500 to-sky-400" aria-hidden />{tr('profile.qualifications')}</h2>
             <ul className="mt-3 space-y-2">
               {doctor.qualifications.map((q) => (
                 <li key={q} className="flex items-start gap-2 text-sm text-slate-700">
@@ -151,8 +153,8 @@ export default function DoctorProfileClient() {
             </p>
           </section>
 
-          <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-card">
-            <h2 className="text-sm font-extrabold uppercase tracking-wide text-slate-700">{tr('profile.timings')}</h2>
+          <section className="card animate-rise p-6 sm:p-7">
+            <h2 className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.14em] text-slate-500"><span className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-brand-500 to-sky-400" aria-hidden />{tr('profile.timings')}</h2>
             <dl className="mt-3 space-y-2">
               {Object.entries(doctor.timings).map(([k, v]) => (
                 <div key={k} className="flex items-center justify-between gap-3 text-sm">
@@ -163,8 +165,8 @@ export default function DoctorProfileClient() {
             </dl>
           </section>
 
-          <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-card">
-            <h2 className="text-sm font-extrabold uppercase tracking-wide text-slate-700">{tr('profile.clinics')}</h2>
+          <section className="card animate-rise p-6 sm:p-7">
+            <h2 className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.14em] text-slate-500"><span className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-brand-500 to-sky-400" aria-hidden />{tr('profile.clinics')}</h2>
             <div className="mt-3 grid gap-3 sm:grid-cols-2">
               {doctor.clinics.map((cid) => {
                 const c = getClinic(cid);
@@ -183,8 +185,8 @@ export default function DoctorProfileClient() {
             </div>
           </section>
 
-          <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-card">
-            <h2 className="text-sm font-extrabold uppercase tracking-wide text-slate-700">
+          <section className="card animate-rise p-6 sm:p-7">
+            <h2 className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.14em] text-slate-500"><span className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-brand-500 to-sky-400" aria-hidden />
               {tr('profile.reviews')} ({visibleReviews.length})
             </h2>
             <div className="mt-4 space-y-4">
@@ -213,26 +215,27 @@ export default function DoctorProfileClient() {
         </div>
 
         {/* Booking widget */}
-        <aside className="h-fit rounded-2xl border border-brand-200 bg-white p-6 shadow-soft lg:sticky lg:top-24">
-          <h2 className="text-lg font-extrabold text-brand-950">{tr('profile.bookTitle')}</h2>
+        <aside className="stagger-2 h-fit animate-rise rounded-3xl border border-brand-200/70 bg-white p-6 shadow-lift lg:sticky lg:top-24">
+          <h2 className="text-lg font-extrabold tracking-tight text-brand-950">{tr('profile.bookTitle')}</h2>
           <p className="mt-1 text-sm text-slate-500">
-            {tr('profile.fee')}: <span className="font-extrabold text-brand-700">{formatFee(doctor.fee)}</span>
+            {tr('profile.fee')}: <span className="text-gradient font-extrabold">{formatFee(doctor.fee)}</span>
           </p>
+          <div className="hairline my-4" aria-hidden />
 
           {!booked ? (
             <div className="mt-5 space-y-4">
               <div>
-                <p className="mb-2 text-xs font-bold uppercase tracking-wide text-slate-500">{tr('profile.pickDate')}</p>
+                <p className="label-base">{tr('profile.pickDate')}</p>
                 <div className="grid grid-cols-4 gap-2">
                   {days.map((d, i) => (
                     <button
                       key={d.date}
                       type="button"
                       onClick={() => setDayIdx(i)}
-                      className={`rounded-xl border px-1 py-2 text-center text-xs font-bold transition-colors ${
+                      className={`rounded-xl border px-1 py-2 text-center text-xs font-bold transition-all duration-200 ${
                         dayIdx === i
-                          ? 'border-brand-600 bg-brand-600 text-white'
-                          : 'border-slate-200 text-slate-600 hover:border-brand-300'
+                          ? 'border-brand-600 bg-gradient-to-b from-brand-500 to-brand-600 text-white shadow-soft'
+                          : 'border-slate-200 bg-white text-slate-600 hover:border-brand-300 hover:shadow-card'
                       }`}
                     >
                       {dayLabel(i)}
@@ -245,17 +248,17 @@ export default function DoctorProfileClient() {
               </div>
 
               <div>
-                <p className="mb-2 text-xs font-bold uppercase tracking-wide text-slate-500">{tr('profile.pickSlot')}</p>
+                <p className="label-base">{tr('profile.pickSlot')}</p>
                 <div className="grid grid-cols-3 gap-2">
                   {SLOTS.map((s) => (
                     <button
                       key={s}
                       type="button"
                       onClick={() => setSlot(s)}
-                      className={`rounded-xl border px-2 py-2 text-xs font-bold transition-colors ${
+                      className={`rounded-xl border px-2 py-2 text-xs font-bold transition-all duration-200 ${
                         slot === s
-                          ? 'border-brand-600 bg-brand-50 text-brand-700'
-                          : 'border-slate-200 text-slate-600 hover:border-brand-300'
+                          ? 'border-brand-500 bg-brand-50 text-brand-700 shadow-[0_0_0_3px_rgba(59,130,246,0.12)]'
+                          : 'border-slate-200 bg-white text-slate-600 hover:border-brand-300 hover:shadow-card'
                       }`}
                     >
                       {s}
@@ -265,18 +268,18 @@ export default function DoctorProfileClient() {
               </div>
 
               <div>
-                <label htmlFor="bk-name" className="mb-1 block text-xs font-bold uppercase tracking-wide text-slate-500">
+                <label htmlFor="bk-name" className="label-base">
                   {tr('profile.yourName')}
                 </label>
                 <input
                   id="bk-name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
+                  className="input-base"
                 />
               </div>
               <div>
-                <label htmlFor="bk-phone" className="mb-1 block text-xs font-bold uppercase tracking-wide text-slate-500">
+                <label htmlFor="bk-phone" className="label-base">
                   {tr('profile.yourPhone')}
                 </label>
                 <input
@@ -285,7 +288,7 @@ export default function DoctorProfileClient() {
                   onChange={(e) => setPhone(e.target.value)}
                   inputMode="tel"
                   placeholder="03XX XXXXXXX"
-                  className="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
+                  className="input-base"
                 />
               </div>
 
@@ -294,7 +297,7 @@ export default function DoctorProfileClient() {
               <button
                 type="button"
                 onClick={confirm}
-                className="w-full rounded-xl bg-brand-600 py-3 text-sm font-bold text-white shadow-soft transition-colors hover:bg-brand-700"
+                className="btn-primary w-full"
               >
                 {tr('profile.confirm')}
               </button>
@@ -314,7 +317,7 @@ export default function DoctorProfileClient() {
               <button
                 type="button"
                 onClick={() => setBooked(null)}
-                className="mt-3 w-full rounded-xl border border-slate-200 py-2.5 text-sm font-bold text-slate-600 hover:bg-slate-50"
+                className="btn-secondary mt-3 w-full"
               >
                 {tr('common.cancel')}
               </button>

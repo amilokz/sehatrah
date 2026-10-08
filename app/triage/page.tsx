@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useLang } from '@/components/LangProvider';
+import PageHeader from '@/components/PageHeader';
 import { triageSymptoms, type TriageResult } from '@/lib/triage';
 
 interface Msg {
@@ -122,30 +123,33 @@ export default function TriagePage() {
   const voiceSupported = hasSpeechRecognition();
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6">
-      <div className="text-center">
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-violet-100 px-3 py-1 text-xs font-bold text-violet-700">
-          <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="currentColor">
-            <path d="M12 2a7 7 0 0 0-7 7v3a7 7 0 0 0 14 0V9a7 7 0 0 0-7-7Zm-3 7a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm6 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Z" />
-          </svg>
-          {tr('triage.simLabel')}
-        </span>
-        <h1 className="mt-3 text-2xl font-extrabold text-brand-950 sm:text-3xl">{tr('triage.title')}</h1>
-        <p className="mx-auto mt-2 max-w-xl text-sm text-slate-500">{tr('triage.subtitle')}</p>
-      </div>
+    <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
+      <PageHeader eyebrow={tr('triage.simLabel')} title={tr('triage.title')} subtitle={tr('triage.subtitle')} />
 
       {/* Chat card */}
-      <div className="mt-6 overflow-hidden rounded-3xl border border-brand-100 bg-white shadow-soft">
+      <div className="stagger-2 mt-8 animate-rise overflow-hidden rounded-3xl border border-brand-100/80 bg-white shadow-lift">
+        <div className="flex items-center gap-3 border-b border-brand-100/60 bg-gradient-to-r from-brand-50/80 via-white to-sky-50/80 px-5 py-3.5">
+          <span className="relative flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-indigo-600 text-white shadow-glow-sm">
+            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor">
+              <path d="M12 2a7 7 0 0 0-7 7v3a7 7 0 0 0 14 0V9a7 7 0 0 0-7-7Zm-3 7a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm6 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Z" />
+            </svg>
+            <span className="absolute -right-1 -top-1 h-3 w-3 animate-pulse-soft rounded-full bg-emerald-400 ring-2 ring-white" aria-hidden />
+          </span>
+          <div>
+            <p className="text-sm font-extrabold text-brand-950">{tr('triage.title')}</p>
+            <p className="text-[11px] font-semibold text-slate-400">{tr('triage.simLabel')} · {tr('triage.listen')}</p>
+          </div>
+        </div>
         <div ref={scrollRef} className="chat-scroll h-[380px] space-y-4 overflow-y-auto bg-calm-50 p-4 sm:h-[420px] sm:p-6">
           {messages.map((m) => (
-            <div key={m.id} className={`flex ${m.from === 'user' ? 'justify-end' : 'justify-start'}`}>
+            <div key={m.id} className={`msg-in flex ${m.from === 'user' ? 'justify-end' : 'justify-start'}`}>
               <div
                 className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
                   m.from === 'user'
-                    ? 'rounded-br-sm bg-brand-600 text-white'
+                    ? 'rounded-br-sm bg-gradient-to-b from-brand-600 to-brand-700 text-white shadow-[0_4px_14px_-4px_rgba(37,99,235,0.5)]'
                     : m.result?.kind === 'emergency'
-                      ? 'rounded-bl-sm border-2 border-red-300 bg-red-50 text-red-900'
-                      : 'rounded-bl-sm border border-slate-200 bg-white text-slate-800 shadow-card'
+                      ? 'rounded-bl-sm border-2 border-red-400 bg-red-50 text-red-900 shadow-[0_4px_16px_-4px_rgba(220,38,38,0.35)]'
+                      : 'rounded-bl-sm border border-slate-200/80 bg-white text-slate-800 shadow-card'
                 }`}
               >
                 {m.result?.kind === 'emergency' && (
@@ -216,12 +220,12 @@ export default function TriagePage() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder={listening ? tr('triage.listening') : tr('triage.placeholder')}
-            className="min-w-0 flex-1 rounded-full border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-800 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
+            className="min-w-0 flex-1 rounded-full border border-slate-200 bg-white px-5 py-3 text-sm text-slate-800 shadow-card transition-all placeholder:text-slate-400 hover:border-slate-300 focus:border-brand-500 focus:outline-none focus:ring-4 focus:ring-brand-100"
             aria-label={tr('triage.placeholder')}
           />
           <button
             type="submit"
-            className="shrink-0 rounded-full bg-brand-600 px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-brand-700"
+            className="btn-primary shrink-0 !rounded-full !px-6"
           >
             {tr('triage.send')}
           </button>
